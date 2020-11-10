@@ -4,13 +4,13 @@ const forcaste = (long,lati,callback)=>{
 
     const url = 'http://api.weatherstack.com/current?access_key=ec51f6693da6d36af9b24fe2e3db7471&query='+long+','+lati+'&units=f'
 
-    request({url:url,json:true},(error,responce)=>{
+    request({url,json:true},(error,{body} = {})=>{
         if(error){
                   callback('unable to connect to weathr servoce',undefined);
-                }else if(responce.body.error){
+                }else if(body.error){
                     callback('unable to find location',undefined);
                 }else{
-                callback(undefined,responce.body.current.weather_descriptions+'. It is currently '+responce.body.current.temperature+' and eel like '+responce.body.current.feelslike);
+                callback(undefined,body.current.weather_descriptions+'. It is currently '+body.current.temperature+' and eel like '+body.current.feelslike);
                 }
     });
 }

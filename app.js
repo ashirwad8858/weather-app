@@ -7,16 +7,16 @@ if(!address){
     console.log("Please enter location")
 }else{
 
-    geolocation(process.argv[2],(error,data)=>{
+    geolocation(address,(error,{long,lati,location} = {})=>{
         if(error){
             return console.log(error)
         }
         
-        forcaste(data.long,data.lati,(erro,dat)=>{
+        forcaste(long,lati,(erro,dat)=>{
                 if(erro){
                    return console.log(erro)
                 }
-                console.log(data.location)
+                console.log(location)
                 console.log(dat);
             })
         
